@@ -1,2 +1,4 @@
 theme: jekyll-theme-cayman
 show-downloads: true
+github:
+  repository_url: https://github.com/localcc/360AsController
