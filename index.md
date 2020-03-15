@@ -1,37 +1,57 @@
-## Welcome to GitHub Pages
+## Building from source
 
-You can use the [editor on GitHub](https://github.com/localcc-websites/360AsController/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Driver for windows
+1. Clone the repo to your local machine
 
-### Markdown
+`git clone https://github.com/localcc/360AsController`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+2. Enter the repo directory and update submodules
 
-```markdown
-Syntax highlighted code block
+`git submodule update --init --recursive`
 
-# Header 1
-## Header 2
-### Header 3
+3. Go to ViGEm bus directory and build the solution with Debug x64 configuration
 
-- Bulleted
-- List
+4. Build 360AsController as Debug x64 
 
-1. Numbered
-2. List
+5. Copy ViGEm dll from ViGEm build folder, to application build folder
 
-**Bold** and _Italic_ and `Code` text
+#### Build errors
 
-[Link](url) and ![Image](src)
+If you have a bunch of errors like USHORT is undefined, add 
+`#include <Windows.h>` after `#pragma once` to ViGEm's Common.h file
+
+
+### 360 Application
+
+1. [Setup your machine to compile xenon applications](https://free60project.github.io/wiki/Xenon_Toolchain)
+
+2. Clone the repo to your local machine
+
+`git clone https://github.com/localcc/360AsController`
+
+3. Go to Xenon directory and run
+
+`make CROSS_COMPILE=xenon-`
+
+4. Copy Xenon.elf32 to FAT32 formatted usb drive, and rename the file to xenon.elf
+
+## Prebuilt binaries
+Head over to [Releases](https://github.com/localcc/360AsController/releases/) page and download latest release
+
+
+## Usage
+
+
+### On 360:
+1. Launch Xell loader and lookup your ip, remember it to connect with driver on pc.
+
+2. Plug usb drive with xenon.elf written on it, wait for the application to launch, when `Waiting for clients` will be displayed, connect to the console with pc driver.
+
+
+### On pc:
+```
+360AsController.exe [ip]
+Example: 360AsController.exe 192.168.1.158
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/localcc-websites/360AsController/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
